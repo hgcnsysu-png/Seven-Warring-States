@@ -850,6 +850,309 @@
         ],
         tip: "「圍魏救趙」救的就是趙國；「長平之戰」輸給秦國的也是趙國！"
       },
+      wei: {
+        name: "魏國（三家分晉之一）",
+        tag: "戰國初霸．兩度敗於齊國",
+        location: "位於中原中心偏西（今河南北部、山西南部一帶），緊鄰秦國與齊國。",
+        features: [
+          "公元前 403 年「三家分晉」後成立，任用李悝變法後成為戰國初期最強霸主。",
+          "後來在「桂陵之戰」與「馬陵之戰」兩度被齊國軍師孫臏打敗，魏將龐涓兵敗自殺，從此失去霸主地位。"
+        ],
+        tip: "看到「桂陵之戰、馬陵之戰」被齊國打敗的對手，就是魏國！"
+      },
+      han: {
+        name: "韓國（三家分晉之一）",
+        tag: "中原心臟．利劍聞名",
+        location: "位於中原腹地（今河南中部一帶），領土最小，四面受敵。",
+        features: [
+          "公元前 403 年「三家分晉」後成立的諸侯國之一。",
+          "冶鐵與兵器製造技術發達（天下之強弓勁弩皆自韓出），但國力最弱，也是戰國末期第一個被秦國滅亡的國家。"
+        ],
+        tip: "記住口訣：韓、趙、魏三家瓜分了原本的晉國！"
+      }
+    };
+
+    function selectState(key) {
+      const data = statesData[key] || statesData.qin;
+      const card = document.getElementById('state-info-card');
+      card.innerHTML = `
+        <div>
+          <span class="inline-block px-2.5 py-1 rounded-md bg-amber-100 text-amber-800 text-xs font-bold mb-2">${data.tag}</span>
+          <h4 class="text-xl font-bold font-serif-tc text-stone-900 mb-2">${data.name}</h4>
+          <p class="text-xs sm:text-sm text-stone-600 mb-4 pb-3 border-b border-stone-200"><strong>📍 地理位置：</strong>${data.location}</p>
+          <ul class="space-y-2.5 text-xs sm:text-sm text-stone-800 leading-relaxed mb-5">
+            ${data.features.map(f => `<li class="flex items-start gap-2"><span class="text-amber-600 font-bold">•</span><span>${f}</span></li>`).join('')}
+          </ul>
+        </div>
+        <div class="bg-amber-50 border border-amber-200 rounded-xl p-3.5 text-xs text-amber-950 font-medium">
+          💡 <strong>考試必背提示：</strong>${data.tip}
+        </div>
+      `;
+    }
+
+    // ================= 3. 三大經典戰役推演資料 =================
+    const battlesData = {
+      guiling: {
+        title: "桂陵之戰（戰國中期）",
+        sides: "齊國（勝） VS 魏國（敗）",
+        commander: "齊國軍師：孫臏 ｜ 魏國主將：龐涓",
+        tactic: "圍魏救趙",
+        mapCaption: "🗺️ 行軍走向圖解：魏軍主力北上圍攻趙都「邯鄲」，齊軍不直接救趙，而是西進直搗空虛的魏都「大梁」，迫使龐涓慌忙南下回救，在半路「桂陵」遭齊軍伏擊！",
+        mapSvg: `
+          <svg viewBox="0 0 620 230" class="w-full h-auto rounded-xl bg-amber-50 border-2 border-stone-800">
+            <defs>
+              <marker id="arrow-red" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#dc2626" />
+              </marker>
+              <marker id="arrow-teal" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#0d9488" />
+              </marker>
+              <marker id="arrow-amber" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#d97706" />
+              </marker>
+            </defs>
+            <!-- 黃河意象 -->
+            <path d="M 40 165 Q 250 140 420 110 T 590 70" fill="none" stroke="#93c5fd" stroke-width="8" opacity="0.6" />
+            <text x="545" y="65" font-size="11" font-weight="bold" fill="#2563eb">黃河</text>
+
+            <!-- 城池標記：邯鄲 (趙都) -->
+            <circle cx="240" cy="52" r="18" fill="#2563eb" stroke="#1e3a8a" stroke-width="2.5" />
+            <text x="240" y="56" font-size="11" font-weight="900" fill="#ffffff" text-anchor="middle">邯鄲</text>
+            <text x="240" y="26" font-size="11" font-weight="bold" fill="#1e3a8a" text-anchor="middle">趙國都城（被圍）</text>
+
+            <!-- 城池標記：大梁 (魏都) -->
+            <circle cx="215" cy="182" r="20" fill="#0d9488" stroke="#115e59" stroke-width="2.5" />
+            <text x="215" y="186" font-size="11" font-weight="900" fill="#ffffff" text-anchor="middle">大梁</text>
+            <text x="215" y="216" font-size="11" font-weight="bold" fill="#115e59" text-anchor="middle">魏國都城（兵力空虛）</text>
+
+            <!-- 城池標記：臨淄 (齊都) -->
+            <circle cx="515" cy="115" r="20" fill="#d97706" stroke="#78350f" stroke-width="2.5" />
+            <text x="515" y="119" font-size="11" font-weight="900" fill="#ffffff" text-anchor="middle">臨淄</text>
+            <text x="515" y="148" font-size="11" font-weight="bold" fill="#78350f" text-anchor="middle">齊國出發地</text>
+
+            <!-- 決戰地點：桂陵 -->
+            <polygon points="345,112 353,126 368,128 357,138 360,153 345,145 330,153 333,138 322,128 337,126" fill="#dc2626" stroke="#7f1d1d" stroke-width="1.5" />
+            <text x="345" y="172" font-size="12" font-weight="900" fill="#b91c1c" text-anchor="middle">💥 桂陵伏擊點</text>
+
+            <!-- 路線 1：魏軍北上攻邯鄲 -->
+            <path d="M 205 162 Q 195 105 224 68" fill="none" stroke="#0d9488" stroke-width="3" stroke-dasharray="5,4" marker-end="url(#arrow-teal)" />
+            <text x="148" y="112" font-size="10.5" font-weight="bold" fill="#0f766e">① 魏軍主力北上圍趙</text>
+
+            <!-- 路線 2：齊軍直攻大梁 -->
+            <path d="M 493 122 Q 410 155 242 180" fill="none" stroke="#d97706" stroke-width="3.5" marker-end="url(#arrow-amber)" />
+            <text x="435" y="176" font-size="10.5" font-weight="bold" fill="#b45309">② 齊軍直搗魏都大梁</text>
+
+            <!-- 路線 3：龐涓慌忙回救中伏 -->
+            <path d="M 258 62 Q 305 88 336 118" fill="none" stroke="#dc2626" stroke-width="3.5" marker-end="url(#arrow-red)" />
+            <text x="342" y="78" font-size="10.5" font-weight="bold" fill="#dc2626">③ 龐涓回救，半路中伏大敗！</text>
+          </svg>
+        `,
+        background: "魏國強盛後出兵攻打趙國，包圍趙國都城邯鄲，趙國緊急向齊國求救。",
+        story: "齊國軍師孫臏認為，若直接去邯鄲與魏軍硬拚，只會兩敗俱傷；不如趁魏國主力全在國外、國內空虛時，直接率軍攻打魏國都城「大梁」。魏軍主將龐涓果然慌忙撤兵回救，在半路「桂陵」遭到齊軍以逸待勞伏擊而大敗！",
+        result: "成功解救趙國之圍，重創魏軍主力，成為兵法史上「避實擊虛」的經典戰例。"
+      },
+      maling: {
+        title: "馬陵之戰（戰國中期）",
+        sides: "齊國（勝） VS 魏國（敗）",
+        commander: "齊國軍師：孫臏 ｜ 魏國主將：龐涓",
+        tactic: "減灶誘敵",
+        mapCaption: "🗺️ 行軍走向圖解：齊軍故意向東撤退並「逐日減灶」（10萬 ➔ 5萬 ➔ 3萬），誘使魏將龐涓丟下步兵、只帶輕騎兵日夜狂追，最終在狹窄的「馬陵道」落入齊軍萬箭齊發的口袋陣！",
+        mapSvg: `
+          <svg viewBox="0 0 620 230" class="w-full h-auto rounded-xl bg-emerald-50/80 border-2 border-stone-800">
+            <defs>
+              <marker id="arrow-red2" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#dc2626" />
+              </marker>
+              <marker id="arrow-amber2" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#d97706" />
+              </marker>
+            </defs>
+            <!-- 山谷地形示意 (馬陵道) -->
+            <polygon points="440,25 495,85 550,25" fill="#78716c" stroke="#44403c" stroke-width="2" />
+            <polygon points="440,205 495,145 550,205" fill="#78716c" stroke="#44403c" stroke-width="2" />
+            <text x="495" y="218" font-size="11" font-weight="900" fill="#1c1917" text-anchor="middle">馬陵狹谷（兩側埋伏弓箭手）</text>
+
+            <!-- 魏軍出發地 -->
+            <circle cx="75" cy="115" r="22" fill="#0d9488" stroke="#115e59" stroke-width="2.5" />
+            <text x="75" y="119" font-size="11" font-weight="900" fill="#ffffff" text-anchor="middle">魏軍</text>
+            <text x="75" y="152" font-size="10.5" font-weight="bold" fill="#115e59" text-anchor="middle">龐涓率軍追擊</text>
+
+            <!-- 第一天營地：10萬灶 -->
+            <rect x="145" y="45" width="88" height="36" rx="8" fill="#ffffff" stroke="#d97706" stroke-width="2" />
+            <text x="189" y="61" font-size="10" font-weight="bold" fill="#92400e" text-anchor="middle">第一天撤退</text>
+            <text x="189" y="75" font-size="11" font-weight="900" fill="#d97706" text-anchor="middle">🔥 挖 10 萬灶</text>
+
+            <!-- 第二天營地：5萬灶 -->
+            <rect x="255" y="45" width="88" height="36" rx="8" fill="#ffffff" stroke="#d97706" stroke-width="2" />
+            <text x="299" y="61" font-size="10" font-weight="bold" fill="#92400e" text-anchor="middle">第二天撤退</text>
+            <text x="299" y="75" font-size="11" font-weight="900" fill="#d97706" text-anchor="middle">🔥 減為 5 萬灶</text>
+
+            <!-- 第三天營地：3萬灶 -->
+            <rect x="365" y="45" width="88" height="36" rx="8" fill="#ffffff" stroke="#d97706" stroke-width="2" />
+            <text x="409" y="61" font-size="10" font-weight="bold" fill="#92400e" text-anchor="middle">第三天撤退</text>
+            <text x="409" y="75" font-size="11" font-weight="900" fill="#dc2626" text-anchor="middle">🔥 僅剩 3 萬灶</text>
+
+            <!-- 齊軍誘敵路線 (上方虛線) -->
+            <path d="M 120 98 L 465 98" fill="none" stroke="#d97706" stroke-width="3" stroke-dasharray="6,4" marker-end="url(#arrow-amber2)" />
+
+            <!-- 龐涓輕敵狂追路線 (下方實線直衝口袋陣) -->
+            <path d="M 102 122 L 478 122" fill="none" stroke="#dc2626" stroke-width="4" marker-end="url(#arrow-red2)" />
+            <text x="285" y="142" font-size="11" font-weight="bold" fill="#b91c1c" text-anchor="middle">龐涓誤判齊軍逃亡過半，丟下步兵輕騎狂追 ➔</text>
+
+            <!-- 伏擊圈標記 -->
+            <circle cx="498" cy="115" r="22" fill="#dc2626" stroke="#fef08a" stroke-width="2.5" />
+            <text x="498" y="113" font-size="10" font-weight="900" fill="#ffffff" text-anchor="middle">萬箭</text>
+            <text x="498" y="126" font-size="10" font-weight="900" fill="#fef08a" text-anchor="middle">齊發</text>
+            <text x="568" y="112" font-size="10.5" font-weight="900" fill="#991b1b" text-anchor="middle">龐涓兵敗</text>
+            <text x="568" y="126" font-size="10.5" font-weight="900" fill="#991b1b" text-anchor="middle">樹下自殺</text>
+          </svg>
+        `,
+        background: "十多年後，魏國攻打韓國，齊國再度出兵救援，魏將龐涓氣急敗壞回軍迎戰齊軍。",
+        story: "孫臏看準龐涓急於求勝、輕敵冒進的性格，故意率齊軍假裝撤退，並命令士兵「第一天挖十萬個做飯的灶，第二天減為五萬個，第三天減為三萬個」。龐涓看到灶數越來越少，誤以為齊軍大量逃亡、兵力大減，便丟下步兵、親自率領輕騎兵日夜兼程追擊，結果在地形狹窄的「馬陵道」落入齊軍萬箭齊發的埋伏圈！",
+        result: "魏將龐涓走投無路、兵敗自殺，魏軍全軍覆沒，魏國從此徹底失去戰國霸主地位。"
+      },
+      changping: {
+        title: "長平之戰（公元前 260 年）",
+        sides: "秦國（勝） VS 趙國（敗）",
+        commander: "秦國名將：白起 ｜ 趙國主將：廉頗 ➔ 趙括（紙上談兵）",
+        tactic: "反間計 ＋ 誘敵深入、斷糧圍殲",
+        mapCaption: "🗺️ 行軍走向圖解：趙軍主將趙括放棄防禦、全軍向西主動出擊；秦將白起佯裝敗退，將趙軍引入山谷，隨即派兩翼奇兵切斷趙軍後方糧道並完成合圍，四十萬趙軍絕糧慘敗！",
+        mapSvg: `
+          <svg viewBox="0 0 620 230" class="w-full h-auto rounded-xl bg-stone-800 border-2 border-stone-900">
+            <defs>
+              <marker id="arrow-gold" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#fbbf24" />
+              </marker>
+              <marker id="arrow-blue" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#60a5fa" />
+              </marker>
+            </defs>
+
+            <!-- 西方秦軍大本營 -->
+            <rect x="30" y="75" width="75" height="80" rx="10" fill="#dc2626" stroke="#fca5a5" stroke-width="2" />
+            <text x="67" y="110" font-size="16" font-weight="900" fill="#ffffff" text-anchor="middle">秦軍</text>
+            <text x="67" y="130" font-size="10.5" font-weight="bold" fill="#fef08a" text-anchor="middle">主將：白起</text>
+
+            <!-- 東方趙軍大本營與糧倉 -->
+            <rect x="505" y="75" width="85" height="80" rx="10" fill="#2563eb" stroke="#93c5fd" stroke-width="2" />
+            <text x="547" y="110" font-size="15" font-weight="900" fill="#ffffff" text-anchor="middle">趙國後方</text>
+            <text x="547" y="130" font-size="10.5" font-weight="bold" fill="#dbeafe" text-anchor="middle">糧草補給基地</text>
+
+            <!-- 長平包圍圈 -->
+            <ellipse cx="290" cy="115" rx="78" ry="44" fill="#1e3a8a" stroke="#ef4444" stroke-width="3.5" stroke-dasharray="6,3" />
+            <text x="290" y="111" font-size="12" font-weight="900" fill="#ffffff" text-anchor="middle">長平圍困圈</text>
+            <text x="290" y="128" font-size="10" font-weight="bold" fill="#93c5fd" text-anchor="middle">趙括率40萬趙軍被困</text>
+
+            <!-- 趙括盲目西進路線 -->
+            <path d="M 500 115 L 378 115" fill="none" stroke="#60a5fa" stroke-width="4" marker-end="url(#arrow-blue)" />
+            <text x="442" y="102" font-size="10.5" font-weight="bold" fill="#93c5fd" text-anchor="middle">① 趙括盲目出擊</text>
+
+            <!-- 秦軍兩翼包抄斷糧路線 -->
+            <path d="M 110 85 Q 260 15 415 95" fill="none" stroke="#fbbf24" stroke-width="3" marker-end="url(#arrow-gold)" />
+            <path d="M 110 145 Q 260 215 415 135" fill="none" stroke="#fbbf24" stroke-width="3" marker-end="url(#arrow-gold)" />
+            <text x="265" y="34" font-size="10.5" font-weight="bold" fill="#fbbf24" text-anchor="middle">② 秦軍兩翼迂迴包抄，切斷趙軍糧道！</text>
+
+            <!-- 斷糧標記 -->
+            <circle cx="422" cy="115" r="14" fill="#dc2626" stroke="#ffffff" stroke-width="2" />
+            <text x="422" y="119" font-size="11" font-weight="900" fill="#ffffff" text-anchor="middle">斷</text>
+            <text x="438" y="152" font-size="10" font-weight="bold" fill="#fca5a5" text-anchor="middle">糧道被切斷</text>
+          </svg>
+        `,
+        background: "秦國向東擴張，唯獨北方的趙國（經過胡服騎射改革後）軍力強盛，成為秦國統一道路上最大的勁敵。",
+        story: "開戰初期，趙國老將廉頗採取堅守不出的策略，擋住秦軍長達三年。秦國於是使用反間計，讓趙王誤以為廉頗怯戰，改派只會「紙上談兵」、毫無實戰經驗的趙括為主將。趙括一上任便盲目全軍出擊，結果中了秦將白起誘敵深入之計，糧道被切斷，四十萬趙軍被圍困絕糧後慘遭殲滅。",
+        result: "趙國元氣大傷、一蹶不振；從此東方六國再也無力抗衡秦國，為日後秦國統一六國奠定了決定性基礎！"
+      }
+    };
+
+    function selectBattle(key) {
+      const data = battlesData[key];
+      document.querySelectorAll('.battle-tab').forEach(btn => {
+        btn.className = "battle-tab px-4 py-2.5 rounded-xl text-sm font-bold transition bg-stone-100 text-stone-700 hover:bg-stone-200";
+      });
+      const activeBtn = document.getElementById(`btn-battle-${key}`);
+      if (activeBtn) {
+        activeBtn.className = "battle-tab px-4 py-2.5 rounded-xl text-sm font-bold transition bg-amber-600 text-white shadow";
+      }
+
+      const container = document.getElementById('battle-content');
+      container.innerHTML = `
+        <div class="flex flex-wrap items-center justify-between gap-2 pb-4 mb-4 border-b border-stone-200">
+          <div>
+            <h5 class="text-lg sm:text-xl font-bold font-serif-tc text-stone-900">${data.title}</h5>
+            <p class="text-xs sm:text-sm text-stone-600 mt-0.5">${data.sides} ｜ ${data.commander}</p>
+          </div>
+          <span class="px-3 py-1 rounded-lg bg-rose-600 text-white text-xs sm:text-sm font-bold shadow-sm">
+            🎯 核心計策：${data.tactic}
+          </span>
+        </div>
+
+        <!-- 新增：互動式戰役地圖走向推演圖 -->
+        <div class="mb-5 bg-white p-3.5 sm:p-4 rounded-xl border-2 border-amber-300 shadow-sm">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs font-extrabold text-amber-900 bg-amber-100 px-2.5 py-0.5 rounded">🗺️ 戰役地圖走向與兵法示意圖</span>
+            <span class="text-[11px] text-stone-500">看箭頭方向理解戰術路線</span>
+          </div>
+          ${data.mapSvg}
+          <p class="mt-2.5 text-xs sm:text-sm text-stone-800 font-semibold bg-amber-50/80 p-2.5 rounded-lg border border-amber-200 leading-relaxed">
+            ${data.mapCaption}
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs sm:text-sm leading-relaxed">
+          <div class="bg-white p-4 rounded-xl border border-stone-200">
+            <div class="font-bold text-amber-800 mb-1">📌 戰役起因</div>
+            <p class="text-stone-700">${data.background}</p>
+          </div>
+          <div class="bg-white p-4 rounded-xl border border-stone-200">
+            <div class="font-bold text-sky-800 mb-1">📖 兵法推演經過</div>
+            <p class="text-stone-700">${data.story}</p>
+          </div>
+          <div class="bg-amber-50 p-4 rounded-xl border border-amber-200">
+            <div class="font-bold text-rose-800 mb-1">🏆 歷史結果與意義</div>
+            <p class="text-stone-900 font-medium">${data.result}</p>
+          </div>
+        </div>
+      `;
+    }
+
+    // ================= 4. 互動翻轉記憶卡資料 =================
+    const flashcardsData = [
+      { front: "春秋與戰國的「兩大分界標誌」是什麼？", back: "公元前 403 年「三家分晉」與公元前 386 年「田氏代齊」。" },
+      { front: "「戰國七雄」是哪七個國家？哪一國常被誤當成七雄？", back: "齊、楚、燕、韓、趙、魏、秦（指國家，非人物）。春秋後期的「吳國」不屬於戰國七雄！" },
+      { front: "晉國在公元前 403 年分裂成哪三個諸侯國？", back: "韓、趙、魏三國（由周威烈王正式冊封為諸侯）。" },
+      { front: "秦國地處最西，憑藉哪兩大地理天險自守？", back: "「崤山」與「函谷關」（進可攻、退可守）。" },
+      { front: "商鞅變法中，哪一項措施「最能提升士兵作戰積極性」？", back: "「按軍功大小授爵」（不論出身，殺敵立功即可封爵得田）。" },
+      { front: "孫臏在「桂陵之戰」與「馬陵之戰」分別用什麼計策破魏軍？", back: "桂陵之戰用「圍魏救趙」；馬陵之戰用「減灶誘敵」（魏將龐涓兵敗自殺）。" }
+    ];
+
+    function renderFlashcards() {
+      const grid = document.getElementById('flashcard-grid');
+      grid.innerHTML = flashcardsData.map((card, idx) => `
+        <div onclick="this.classList.toggle('card-flipped')" class="card-flip cursor-pointer h-44 select-none">
+          <div class="card-inner relative w-full h-full">
+            <!-- 正面 -->
+            <div class="card-front absolute inset-0 bg-stone-50 border-2 border-stone-300 hover:border-amber-500 rounded-2xl p-5 flex flex-col justify-between shadow-sm">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold text-amber-700 bg-amber-100 px-2 py-0.5 rounded">考點卡 #${idx + 1}</span>
+                <span class="text-[11px] text-stone-400">點擊翻看答案 🔄</span>
+              </div>
+              <p class="font-bold text-sm sm:text-base text-stone-900 text-center leading-snug">${card.front}</p>
+              <div class="text-center text-[11px] text-stone-400">自我測試中…</div>
+            </div>
+            <!-- 背面 -->
+            <div class="card-back absolute inset-0 bg-amber-600 text-white border-2 border-amber-700 rounded-2xl p-5 flex flex-col justify-between shadow-md">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold bg-stone-900/30 px-2 py-0.5 rounded">✅ 標準答案</span>
+                <span class="text-[11px] text-amber-100">點擊翻回 🔄</span>
+              </div>
+              <p class="font-bold text-sm sm:text-base text-center leading-relaxed">${card.back}</p>
+              <div class="text-center text-[11px] text-amber-100">記住了嗎？</div>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
     // ================= 5. 100題混合題庫（選擇題 + 填空題）與隨機抽題引擎 =================
     const questionBank100 = [
       // --- 【第一單元：時代分界與三家分晉、田氏代齊 (1-20)】 ---
